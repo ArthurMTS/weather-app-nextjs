@@ -1,7 +1,12 @@
+import { Header } from '@/components'
+
 export default function Home() {
   return (
     <>
-      <h1>Hello, world</h1>
+      <Header />
+      <main className='bg-light'>
+        <h1>Body</h1>
+      </main>
     </>
   )
 }
