@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className='bg-light'>
+      <main className='bg-white'>
         <h1>Body</h1>
       </main>
     </>
