@@ -12,7 +12,7 @@ export function Header() {
     <>
       <header className="flex items-center justify-between px-10 py-2 bg-gray">
         <div className="flex items-center gap-5">
-          <img className="w-14 h-14" src="/wind.svg" alt="wind" />
+          <img className="w-14 h-14" src="/umbrella.svg" alt="wind" />
           <h1 className="text-4xl font-semibold text-dark">Weather</h1>
         </div>
 
