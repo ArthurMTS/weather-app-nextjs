@@ -10,26 +10,26 @@ export function Header() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-10 py-2 bg-gray">
-        <div className="flex items-center gap-5">
-          <img className="w-14 h-14" src="/umbrella.svg" alt="wind" />
-          <h1 className="text-4xl font-semibold text-dark">Weather</h1>
+      <header className="flex items-center justify-between p-2 bg-black fixed w-full">
+        <div className="flex items-center gap-2 lg:gap-4">
+          <img className="w-10 h-10 fill-white lg:w-12 h-12" src="/umbrella.svg" alt="wind" />
+          <h1 className="text-2xl font-semibold text-light hidden sm:block md:text-3xl lg:text-4xl">Weather</h1>
         </div>
 
         <form onSubmit={onCitySubmit} className="flex items-center gap-2">
           <input
-            className="p-2 w-60 text-lg rounded"
+            className="p-2 w-32 text-sm rounded mc:w-48 sm:w-60 md:text-base md:w-80 lg:text-2xl lg:w-96"
             type="text"
             placeholder="City Name"
             value={city}
             onChange={event => setCity(event.target.value)}
           />
-          <button className="bg-main rounded-full p-2 ease-in duration-200 hover:scale-110" type="submit">
+          <button className="bg-light rounded-full p-1 ease-in duration-200 hover:scale-110 md:p-2" type="submit">
             <img src="/search.svg" alt="search" />
           </button>
         </form>
 
-        <p className="bg-main text-white p-2 cursor-pointer">Saved Cities</p>
+        <img className="w-10 h-10 cursor-pointer lg:w-12" src="/menu.svg" alt="burger menu" />
       </header>
     </>
   );

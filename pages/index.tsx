@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="bg-white flex flex-col justify-center items-center p-10 gap-6 h-fit">
+      <main className="bg-white flex flex-col justify-center items-center h-screen">
         <CityInfo />
-        <div className="w-4/5 flex flex-wrap justify-center gap-6">
+        <div className="w-full flex flex-wrap justify-center gap-2 sm:gap-4 md:w-3/4">
           <InfoCard
             title="Humidity"
             value="91"
