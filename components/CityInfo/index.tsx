@@ -1,3 +1,11 @@
+interface CityInfoProps {
+  city: string;
+  date: string;
+  weather: string;
+  temp: number;
+  feel: number;
+}
+
 export function CityInfo() {
   return (
     <section className="flex justify-between items-center bg-whiter rounded-xl p-2 my-4 shadow gap-3 mc:gap-4 mc:p-3 sm:p-4 md:w-3/4">
@@ -18,11 +26,7 @@ export function CityInfo() {
           Monday, 14:18
         </p>
         <div className="flex gap-1">
-          <img
-            className="w-4 lg:w-6"
-            src="/map-pin.svg"
-            alt="map pin"
-          />
+          <img className="w-4 lg:w-6" src="/map-pin.svg" alt="map pin" />
           <p className="font-bold text-black mc:text-lg sm:text-xl lg:text-3xl">
             Jaguaruana, BR
           </p>
