@@ -6,9 +6,10 @@ import { Weather, WeatherReturn } from "@/config/types";
 
 interface HeaderProps {
   setCity: (city: Weather) => void;
+  setLoading: (value: boolean) => void;
 }
 
-export function Header({ setCity }: HeaderProps) {
+export function Header({ setCity, setLoading }: HeaderProps) {
   const [input, setInput] = React.useState("");
 
   const handleError = () => toast.error("Cidade não encontrada 🧭");
@@ -17,6 +18,7 @@ export function Header({ setCity }: HeaderProps) {
     event.preventDefault();
     if (input === "") return;
     try {
+      setLoading(true);
       const result = await api.get<WeatherReturn>(`/weather?q=${input}`);
 
       const city: Weather = {
@@ -41,6 +43,8 @@ export function Header({ setCity }: HeaderProps) {
     } catch(err) {
       console.error(err);
       handleError();
+    } finally {
+      setLoading(false);
     }
   };
 

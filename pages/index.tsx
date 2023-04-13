@@ -2,7 +2,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-import { Header, CityInfo, InfoCard, MetricToggle } from "@/components";
+import { Header, CityInfo, InfoCard, MetricToggle, Loading } from "@/components";
 import { Weather } from "@/config/types";
 import { degToCompass } from "@/utils/format";
 import {
@@ -17,6 +17,7 @@ import {
 export default function Home() {
   const [city, setCity] = React.useState<Weather>({} as Weather);
   const [system, setSystem] = React.useState<"metric" | "imperial">("metric");
+  const [loading, setLoading] = React.useState(false);
   let Display;
 
   React.useMemo(() => {
@@ -80,9 +81,13 @@ export default function Home() {
 
   return (
     <>
-      <Header setCity={setCity} />
+      <Header
+        setCity={setCity}
+        setLoading={setLoading}
+      />
       <main className="bg-white flex flex-col justify-center items-center h-screen">
         <ToastContainer />
+        {loading ? <Loading /> : ""}
         {Display}
       </main>
     </>
