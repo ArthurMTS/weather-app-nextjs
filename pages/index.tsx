@@ -27,6 +27,7 @@ export default function Home() {
           temp={getTemp(system, city.temp)}
           feel={getTemp(system, city.feels_like)}
           weather={city.weather}
+          description={city?.description}
           date={
             getWeekDay(city.dt, city.timezone) + " " +
             (getTime(system, city.dt, city.timezone) ||

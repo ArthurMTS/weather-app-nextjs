@@ -33,6 +33,7 @@ export interface Weather {
   country: string;
   temp: number;
   weather: string;
+  description: string;
   feels_like: number;
   humidity: number;
   visibility: number;
