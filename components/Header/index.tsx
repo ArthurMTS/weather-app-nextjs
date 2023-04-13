@@ -1,11 +1,46 @@
 import React from "react";
+import { toast } from "react-toastify";
 
-export function Header() {
-  const [city, setCity] = React.useState("");
+import { api } from "@/config/api";
+import { Weather, WeatherReturn } from "@/config/types";
 
-  const onCitySubmit = (event: React.FormEvent) => {
+interface HeaderProps {
+  setCity: (city: Weather) => void;
+}
+
+export function Header({ setCity }: HeaderProps) {
+  const [input, setInput] = React.useState("");
+
+  const handleError = () => toast.error("Cidade não encontrada 🧭");
+
+  const onCitySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // search for city
+    if (input === "") return;
+    try {
+      const result = await api.get<WeatherReturn>(`/weather?q=${input}`);
+
+      const city: Weather = {
+        id: result?.data.id,
+        name: result?.data.name,
+        country: result?.data.sys.country,
+        temp: result?.data.main.temp,
+        feels_like: result?.data.main.feels_like,
+        weather: result?.data.weather[0].description,
+        humidity: result?.data.main.humidity,
+        visibility: result?.data.visibility,
+        wind_direction: result?.data.wind.deg,
+        wind_speed: result?.data.wind.speed,
+        sunrise: result?.data.sys.sunrise,
+        sunset: result?.data.sys.sunset,
+        timezone: result?.data.timezone,
+        dt: result?.data.dt,
+      }
+      
+      setCity(city);
+    } catch(err) {
+      console.error(err);
+      handleError();
+    }
   };
 
   return (
@@ -27,8 +62,8 @@ export function Header() {
             className="p-2 w-32 text-sm rounded mc:w-48 sm:w-60 md:text-base md:w-80 lg:text-2xl lg:w-96"
             type="text"
             placeholder="City Name"
-            value={city}
-            onChange={event => setCity(event.target.value)}
+            value={input}
+            onChange={event => setInput(event.target.value)}
           />
           <button
             className="bg-light rounded-full p-1 ease-in duration-200 hover:scale-110 md:p-2"

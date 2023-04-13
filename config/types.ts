@@ -1,4 +1,5 @@
 export interface WeatherReturn {
+  dt: number;
   weather: {
     main: string;
     description: string;
@@ -36,8 +37,9 @@ export interface Weather {
   humidity: number;
   visibility: number;
   wind_speed: number;
-  wind_direction: string;
+  wind_direction: number;
   sunrise: number;
   sunset: number;
   timezone: number;
+  dt: number;
 }

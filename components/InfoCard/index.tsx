@@ -1,6 +1,6 @@
 interface InfoCardProps {
   title: string;
-  value: string;
+  value: string | number;
   sub?: string;
   icon: string;
 }

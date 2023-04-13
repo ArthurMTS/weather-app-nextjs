@@ -1,21 +1,26 @@
 import React from "react";
 
-import { MetricContext } from "@/contexts/metric";
+interface MetricToggleProps {
+  system: "metric" | "imperial";
+  setSystem: (value: "metric" | "imperial") => void;
+}
 
-export function MetricToggle() {
-  const { metric, toggleMetric } = React.useContext(MetricContext);
-
+export function MetricToggle({ system, setSystem }: MetricToggleProps) {
   return (
     <div className="flex justify-between items-center bg-whiter rounded-xl p-2 my-4 shadow gap-3">
       <p
-        className={`cursor-pointer text-lg text-dark ${metric[0]}`}
-        onClick={() => toggleMetric(["text-main", ""])}
+        className={`cursor-pointer text-lg text-dark ${
+          system === "metric" ? "text-main" : ""
+        }`}
+        onClick={() => setSystem("metric")}
       >
         Metric System
       </p>
       <p
-        className={`cursor-pointer text-lg text-dark ${metric[1]}`}
-        onClick={() => toggleMetric(["", "text-main"])}
+        className={`cursor-pointer text-lg text-dark ${
+          system === "imperial" ? "text-main" : ""
+        }`}
+        onClick={() => setSystem("imperial")}
       >
         Imperial System
       </p>

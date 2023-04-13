@@ -18,13 +18,17 @@ export function kelvinToFahrenheit(temp: number) {
   return Math.round((temp * 9) / 5 - 459.67);
 }
 
-function timezoneToDate(timezone: number) {
-  const d = new Date();
-  const localTime = d.getTime();
-  const localOffset = d.getTimezoneOffset() * 60000;
-  const utc = localTime + localOffset;
-  const city = utc + 1000 * timezone;
-  return new Date(city);
+export function unixToLocalTime(dt: number, timezone: number) {
+  const time = new Date((dt + timezone) * 1000)
+    .toISOString()
+    ?.match(/\d{2}:\d{2}/)
+    ?.toString();
+  return time?.startsWith("0") ? time.slice(1) : time;
+}
+
+export function timeTwelveHoursFormat(time: any) {
+  let [hours, minutes] = time.split(":");
+  return `${(hours %= 12) ? hours : 12}:${minutes}`;
 }
 
 export function degToCompass(degree: number) {

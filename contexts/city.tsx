@@ -15,7 +15,7 @@ interface CityProviderProps {
 
 export const CityContext = React.createContext({} as CityContextInfo);
 
-export function CityProvider({ children }: CityProviderProps) {
+export function CityProvider({ children }: CityProviderProps) {;
   const [cities, setCities] = useStorage("cities", [] as Weather[]);
 
   const saveCity = (city: Weather) => {
