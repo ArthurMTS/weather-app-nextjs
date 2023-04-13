@@ -13,7 +13,7 @@ interface CityProviderProps {
   children: React.ReactElement;
 }
 
-const CityContext = React.createContext({} as CityContextInfo);
+export const CityContext = React.createContext({} as CityContextInfo);
 
 export function CityProvider({ children }: CityProviderProps) {
   const [cities, setCities] = useStorage("cities", [] as Weather[]);

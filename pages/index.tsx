@@ -1,4 +1,5 @@
-import { Header, CityInfo, InfoCard } from "@/components";
+import { Header, CityInfo, InfoCard, MetricToggle } from "@/components";
+import { MetricProvider } from "@/contexts/metric";
 
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
           <InfoCard title="Sunrise" value="5:31" icon="/sunrise.svg" />
           <InfoCard title="Sunset" value="17:32" icon="/sunset.svg" />
         </div>
+        <MetricProvider>
+          <MetricToggle />
+        </MetricProvider>
       </main>
     </>
   );

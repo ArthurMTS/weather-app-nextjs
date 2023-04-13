@@ -1,17 +1,20 @@
 import React from "react";
 
+import { storage } from "@/utils/storage";
+
 export function useStorage(key: string, initialValue?: any) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState<string | any>(
+    () => storage("get", key) || initialValue,
+  );
 
   const storeValue = (newValue: any) => {
-    if (!newValue) return;
     setValue(newValue);
-    window.localStorage.setItem(key, newValue);
+    storage("set", key, newValue);
   };
 
-  React.useMemo(() => {
-    if (window.localStorage.getItem(key))
-      setValue(window.localStorage.getItem(key));
+  React.useEffect(() => {
+    const item = storage("get", key);
+    if (item) setValue(item);
   }, [key]);
 
   return [value, storeValue];
