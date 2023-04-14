@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 import { api } from "@/config/api";
 import { Weather, WeatherReturn } from "@/config/types";
+import { Dropdown } from "@/components";
 
 interface HeaderProps {
   setCity: (city: Weather) => void;
@@ -37,10 +38,10 @@ export function Header({ setCity, setLoading }: HeaderProps) {
         sunset: result?.data.sys.sunset,
         timezone: result?.data.timezone,
         dt: result?.data.dt,
-      }
-      
+      };
+
       setCity(city);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       handleError();
     } finally {
@@ -78,11 +79,7 @@ export function Header({ setCity, setLoading }: HeaderProps) {
           </button>
         </form>
 
-        <img
-          className="w-10 h-10 cursor-pointer lg:w-12"
-          src="/menu.svg"
-          alt="burger menu"
-        />
+        <Dropdown setCity={setCity} />
       </header>
     </>
   );
