@@ -2,7 +2,14 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-import { Header, CityInfo, InfoCard, MetricToggle, Loading } from "@/components";
+import {
+  Header,
+  CityInfo,
+  InfoCard,
+  MetricToggle,
+  Loading,
+  SaveCityButton,
+} from "@/components";
 import { Weather } from "@/config/types";
 import { degToCompass } from "@/utils/format";
 import {
@@ -30,9 +37,11 @@ export default function Home() {
           weather={city.weather}
           description={city?.description}
           date={
-            getWeekDay(city.dt, city.timezone) + " " +
-            (getTime(system, city.dt, city.timezone) ||
-            "") + " " + getAMPM(system, city?.dt, city?.timezone)
+            getWeekDay(city.dt, city.timezone) +
+            " " +
+            (getTime(system, city.dt, city.timezone) || "") +
+            " " +
+            getAMPM(system, city?.dt, city?.timezone)
           }
         />
         <div className="w-full flex flex-wrap justify-center gap-2 sm:gap-4 md:w-3/4">
@@ -72,7 +81,10 @@ export default function Home() {
             icon="/sunset.svg"
           />
         </div>
-        <MetricToggle system={system} setSystem={setSystem} />
+        <div className="flex gap-2 justify-center items-center">
+          <MetricToggle system={system} setSystem={setSystem} />
+          <SaveCityButton city={city} />
+        </div>
       </>
     ) : (
       ""
@@ -81,10 +93,7 @@ export default function Home() {
 
   return (
     <>
-      <Header
-        setCity={setCity}
-        setLoading={setLoading}
-      />
+      <Header setCity={setCity} setLoading={setLoading} />
       <main className="bg-white flex flex-col justify-center items-center h-screen">
         <ToastContainer />
         {loading ? <Loading /> : ""}

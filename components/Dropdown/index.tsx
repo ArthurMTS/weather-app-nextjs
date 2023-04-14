@@ -33,7 +33,7 @@ export function Dropdown({ setCity }: DropdownProps) {
           open ? "" : "hidden"
         }`}
       >
-        {cities
+        {cities && cities.length > 0
           ? cities?.map(city => (
               <li
                 key={city.id}
