@@ -44,7 +44,7 @@ export default function Home() {
             getAMPM(system, city?.dt, city?.timezone)
           }
         />
-        <div className="w-full flex flex-wrap justify-center gap-2 sm:gap-4 md:w-3/4">
+        <div className="w-full flex flex-wrap justify-center gap-2 sm:gap-4 lg:w-3/4">
           <InfoCard
             title="Humidity"
             value={city.humidity}

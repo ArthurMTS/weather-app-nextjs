@@ -12,10 +12,10 @@ export function SaveCityButton({ city }: SaveCityButtonProps) {
   const { cities, saveCity } = React.useContext(CityContext);
 
   React.useMemo(() => {
-    const result = cities.find(saved => saved.id === city.id);
+    const result = cities?.find(saved => saved?.id === city?.id);
     if (result) setSaved(true);
     else setSaved(false);
-  }, [cities, city.id]);
+  }, [cities, city]);
 
   return (
     <button

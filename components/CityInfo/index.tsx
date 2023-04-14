@@ -30,7 +30,7 @@ const weatherIcon = (weather: string) => {
 
 export function CityInfo({ city, date, weather, description, temp, feel }: CityInfoProps) {
   return (
-    <section className="flex justify-between items-center bg-whiter rounded-xl p-2 my-4 shadow gap-3 mc:gap-4 mc:p-3 sm:p-4 md:w-3/4">
+    <section className="flex justify-between items-center bg-whiter rounded-xl p-1 my-4 shadow gap-3 mc:gap-2 mc:p-2 sm:p-4 md:w-3/4">
       <div className="flex flex-col items-center">
         <p className="text-dark capitalize text-sm mc:text-base sm:text-lg lg:text-2xl">
           {description}
