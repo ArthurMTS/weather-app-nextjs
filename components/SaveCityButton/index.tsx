@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Weather } from "@/config/types";
+import { City } from "@/config/types";
 import { CityContext } from "@/contexts/city";
 
 interface SaveCityButtonProps {
-  city: Weather;
+  city: City;
 }
 
 export function SaveCityButton({ city }: SaveCityButtonProps) {

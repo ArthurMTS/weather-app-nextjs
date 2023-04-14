@@ -83,7 +83,7 @@ export default function Home() {
         </div>
         <div className="flex gap-2 justify-center items-center">
           <MetricToggle system={system} setSystem={setSystem} />
-          <SaveCityButton city={city} />
+          <SaveCityButton city={{ name: city?.name, id: city?.id }} />
         </div>
       </>
     ) : (

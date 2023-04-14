@@ -44,3 +44,8 @@ export interface Weather {
   timezone: number;
   dt: number;
 }
+
+export interface City {
+  id: number;
+  name: string;
+}

@@ -1,7 +1,8 @@
 import React from "react";
 
 import { CityContext } from "@/contexts/city";
-import { Weather } from "@/config/types";
+import { City, Weather } from "@/config/types";
+import { getCity } from "@/utils/api";
 
 interface DropdownProps {
   setCity: (city: Weather) => void;
@@ -10,6 +11,14 @@ interface DropdownProps {
 export function Dropdown({ setCity }: DropdownProps) {
   const [open, setOpen] = React.useState(false);
   const { cities, eraseCity } = React.useContext(CityContext);
+  const [list, setList] = React.useState([] as City[]);
+
+  React.useEffect(() => setList(cities), [cities]);
+
+  const onCityNameClick = async (cityName: string) => {
+    const city = await getCity(cityName);
+    setCity(city);
+  };
 
   return (
     <div className="relative">
@@ -33,13 +42,16 @@ export function Dropdown({ setCity }: DropdownProps) {
           open ? "" : "hidden"
         }`}
       >
-        {cities && cities.length > 0
-          ? cities?.map(city => (
+        {list && list.length > 0
+          ? list?.map(city => (
               <li
                 key={city.id}
                 className="flex justify-between gap-2 border-b pb-1 cursor-pointer font-mono"
               >
-                <p className="hover:text-main" onClick={() => setCity(city)}>
+                <p
+                  className="hover:text-main"
+                  onClick={() => onCityNameClick(city.name)}
+                >
                   {city.name}
                 </p>{" "}
                 <img

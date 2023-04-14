@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Weather } from "@/config/types";
+import { City } from "@/config/types";
 import { useStorage } from "@/hooks/useStorage";
 
 interface CityContextInfo {
-  cities: Weather[];
-  saveCity: (city: Weather) => void;
+  cities: City[];
+  saveCity: (city: City) => void;
   eraseCity: (id: number) => void;
 }
 
@@ -16,10 +16,9 @@ interface CityProviderProps {
 export const CityContext = React.createContext({} as CityContextInfo);
 
 export function CityProvider({ children }: CityProviderProps) {;
-  // const [cities, setCities] = useStorage("cities", [] as Weather[]);
-  const [cities, setCities] = React.useState([] as Weather[]);
+  const [cities, setCities] = useStorage("cities", [] as City[]);
 
-  const saveCity = (city: Weather) => {
+  const saveCity = (city: City) => {
     const list = [...cities];
     list.push(city);
     setCities(list);
