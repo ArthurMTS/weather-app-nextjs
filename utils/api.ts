@@ -1,26 +1,24 @@
 import { api } from "@/config/api";
-import { Weather, WeatherReturn } from "@/config/types";
+import { WeatherReturn } from "@/config/types";
 
 export async function getCity(cityName: string) {
-  const result = await api.get<WeatherReturn>(`/weather?q=${cityName}`);
+  const city = (await api.get<WeatherReturn>(`/weather?q=${cityName}`)).data;
 
-  const city: Weather = {
-    id: result?.data.id,
-    name: result?.data.name,
-    country: result?.data.sys.country,
-    temp: result?.data.main.temp,
-    feels_like: result?.data.main.feels_like,
-    weather: result?.data.weather[0].main,
-    description: result?.data.weather[0].description,
-    humidity: result?.data.main.humidity,
-    visibility: result?.data.visibility,
-    wind_direction: result?.data.wind.deg,
-    wind_speed: result?.data.wind.speed,
-    sunrise: result?.data.sys.sunrise,
-    sunset: result?.data.sys.sunset,
-    timezone: result?.data.timezone,
-    dt: result?.data.dt,
+  return {
+    id: city.id,
+    name: city.name,
+    country: city.sys.country,
+    temp: city.main.temp,
+    feels_like: city.main.feels_like,
+    weather: city.weather[0].main,
+    description: city.weather[0].description,
+    humidity: city.main.humidity,
+    visibility: city.visibility,
+    wind_direction: city.wind.deg,
+    wind_speed: city.wind.speed,
+    sunrise: city.sys.sunrise,
+    sunset: city.sys.sunset,
+    timezone: city.timezone,
+    dt: city.dt,
   };
-
-  return city;
 }

@@ -19,12 +19,11 @@ export function Header({ setCity, setLoading }: HeaderProps) {
     event.preventDefault();
     if (input === "") return;
     try {
-      setLoading(true);
-
       setCity(await getCity(input));
+      setLoading(true);
     } catch (err) {
-      console.error(err);
       handleError();
+      console.error(err);
     } finally {
       setLoading(false);
     }

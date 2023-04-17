@@ -10,7 +10,7 @@ interface CityInfoProps {
 }
 
 const weatherIcon = (weather: string) => {
-  switch(weather) {
+  switch (weather) {
     case "Thunderstorm":
       return "cloud-lightning";
     case "Drizzle":
@@ -28,14 +28,21 @@ const weatherIcon = (weather: string) => {
   }
 };
 
-export function CityInfo({ city, date, weather, description, temp, feel }: CityInfoProps) {
+export function CityInfo({
+  city,
+  date,
+  weather,
+  description,
+  temp,
+  feel,
+}: CityInfoProps) {
   return (
-    <section className="flex justify-between items-center bg-whiter rounded-xl p-1 my-4 shadow gap-3 mc:gap-2 mc:p-2 sm:p-4 md:w-3/4">
+    <section className="flex justify-between items-center bg-whiter rounded-xl p-1 my-4 shadow gap-2 mc:gap-2 mc:p-2 sm:p-4 md:w-3/4">
       <div className="flex flex-col items-center">
         <p className="text-dark capitalize text-sm mc:text-base sm:text-lg lg:text-2xl">
           {description}
         </p>
-        <p className="font-semibold text-black text-xl mc:text-2xl lg:text-4xl">
+        <p className="font-semibold text-black text-base mc:text-2xl lg:text-4xl">
           {temp}
         </p>
         <p className="text-dark text-sm mc:text-base sm:text-lg lg:text-2xl">
@@ -56,7 +63,7 @@ export function CityInfo({ city, date, weather, description, temp, feel }: CityI
       </div>
 
       <img
-        className="w-12 sm:w-14 lg:w-20"
+        className="w-10 sm:w-14 lg:w-20"
         src={`/${weatherIcon(weather)}.svg`}
         alt="weather"
       />

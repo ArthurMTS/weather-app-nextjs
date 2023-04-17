@@ -9,7 +9,7 @@ export function MetricToggle({ system, setSystem }: MetricToggleProps) {
   return (
     <div className="flex justify-between items-center bg-whiter rounded-xl p-2 my-4 shadow gap-3">
       <p
-        className={`cursor-pointer text-base text-dark ${
+        className={`cursor-pointer text-sm text-dark ${
           system === "metric" ? "text-main" : ""
         }`}
         onClick={() => setSystem("metric")}
@@ -17,7 +17,7 @@ export function MetricToggle({ system, setSystem }: MetricToggleProps) {
         Metric System
       </p>
       <p
-        className={`cursor-pointer text-base text-dark ${
+        className={`cursor-pointer text-sm text-dark ${
           system === "imperial" ? "text-main" : ""
         }`}
         onClick={() => setSystem("imperial")}
