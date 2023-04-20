@@ -12,17 +12,22 @@ interface HeaderProps {
 
 export function Header({ setCity, setLoading }: HeaderProps) {
   const [input, setInput] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
-  const handleError = () => toast.error("Cidade não encontrada 🧭");
+  const handleCityNotFound = () => toast.error("City not found 🧭");
+  const handleEmptyInput = () => toast.warning("Inform a city name");
 
   const onCitySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (input === "") return;
+    if (input === "") {
+      handleEmptyInput();
+      return;
+    }
     try {
       setCity(await getCity(input));
       setLoading(true);
     } catch (err) {
-      handleError();
+      handleCityNotFound();
       console.error(err);
     } finally {
       setLoading(false);
@@ -31,35 +36,38 @@ export function Header({ setCity, setLoading }: HeaderProps) {
 
   return (
     <>
-      <header className="flex items-center justify-between p-2 bg-black fixed w-full">
+      <header className="flex items-center justify-between p-2 bg-blue-500 fixed w-full mc:px-5 sm:px-10 md:px-15 lg:px-20">
         <div className="flex items-center gap-2 lg:gap-4">
           <img
             className="w-10 h-10 fill-white lg:w-12 h-12"
             src="/umbrella.svg"
             alt="wind"
           />
-          <h1 className="text-2xl font-semibold text-light hidden sm:block md:text-3xl lg:text-4xl">
+          <h1 className="text-2xl font-mono font-semibold text-white hidden sm:block md:text-3xl lg:text-4xl">
             Weather
           </h1>
         </div>
 
         <form onSubmit={onCitySubmit} className="flex items-center gap-2">
-          <input
-            className="p-2 w-32 text-sm rounded mc:w-48 sm:w-60 md:text-base md:w-80 lg:text-2xl lg:w-96"
-            type="text"
-            placeholder="City Name"
-            value={input}
-            onChange={event => setInput(event.target.value)}
-          />
+          <div className="relative">
+            <input
+              className="p-2 w-32 font-mono text-sm rounded mc:w-48 sm:w-60 md:text-base md:w-80 lg:text-2xl lg:w-96"
+              type="text"
+              placeholder="City Name"
+              value={input}
+              onChange={event => setInput(event.target.value)}
+              onMouseOver={() => setOpen(true)}
+              onMouseOut={() => setOpen(false)}
+            />
+            <Dropdown setCity={setCity} open={open} setOpen={setOpen} />
+          </div>
           <button
-            className="bg-light rounded-full p-1 ease-in duration-200 hover:scale-110 md:p-2"
+            className="bg-slate-100 rounded-full p-1 ease-in duration-200 hover:scale-110 md:p-2"
             type="submit"
           >
             <img src="/search.svg" alt="search" />
           </button>
         </form>
-
-        <Dropdown setCity={setCity} />
       </header>
     </>
   );

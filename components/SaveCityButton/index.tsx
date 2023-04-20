@@ -19,10 +19,10 @@ export function SaveCityButton({ city }: SaveCityButtonProps) {
 
   return (
     <button
-      className={`border-2 font-semibold rounded-lg p-1 duration-200 ${
+      className={`bg-slate-100 border-2 font-semibold rounded-lg p-1 duration-200 font-mono sm:text-xl ${
         saved
-          ? "border-light text-light cursor-no-drop"
-          : "border-main text-main hover:bg-main hover:text-white"
+          ? "border-light text-gray-400 cursor-no-drop"
+          : "border-amber-400 text-main hover:bg-amber-400 hover:text-white"
       }`}
       disabled={saved}
       onClick={() => saveCity(city)}

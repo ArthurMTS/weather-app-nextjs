@@ -37,12 +37,12 @@ export function CityInfo({
   feel,
 }: CityInfoProps) {
   return (
-    <section className="flex justify-between items-center bg-whiter rounded-xl p-1 my-4 shadow gap-2 mc:gap-2 mc:p-2 sm:p-4 md:w-3/4">
+    <section className="flex justify-between items-center bg-slate-100 rounded-xl p-1 my-4 shadow gap-2 mc:gap-2 mc:p-2 sm:p-4 md:w-3/4">
       <div className="flex flex-col items-center">
         <p className="text-dark capitalize text-sm mc:text-base sm:text-lg lg:text-2xl">
           {description}
         </p>
-        <p className="font-semibold text-black text-base mc:text-2xl lg:text-4xl">
+        <p className="font-semibold font-mono text-black text-base mc:text-2xl lg:text-4xl">
           {temp}
         </p>
         <p className="text-dark text-sm mc:text-base sm:text-lg lg:text-2xl">
@@ -56,7 +56,7 @@ export function CityInfo({
         </p>
         <div className="flex gap-1">
           <img className="w-4 lg:w-6" src="/map-pin.svg" alt="map pin" />
-          <p className="font-bold text-black mc:text-lg sm:text-xl lg:text-3xl">
+          <p className="font-bold font-mono text-black mc:text-lg sm:text-xl lg:text-3xl">
             {city}
           </p>
         </div>

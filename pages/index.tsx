@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <>
       <Header setCity={setCity} setLoading={setLoading} />
-      <main className="bg-white flex flex-col justify-center items-center h-screen">
+      <main className="bg-gradient-to-r from-sky-200 to-cyan-100 flex flex-col justify-center items-center h-screen">
         <ToastContainer />
         {loading ? <Loading /> : ""}
         {Display}
