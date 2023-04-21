@@ -17,6 +17,9 @@ export const CityContext = React.createContext({} as CityContextInfo);
 
 export function CityProvider({ children }: CityProviderProps) {
   const [cities, setCities] = useStorage("cities", [] as City[]);
+  const [list, setList] = React.useState<City[]>([] as City[]);
+
+  React.useEffect(() => setList(cities), [cities]);
 
   const saveCity = (city: City) => {
     const list = [...cities];
@@ -30,7 +33,7 @@ export function CityProvider({ children }: CityProviderProps) {
   };
 
   return (
-    <CityContext.Provider value={{ cities, saveCity, eraseCity }}>
+    <CityContext.Provider value={{ cities: list, saveCity, eraseCity }}>
       {children}
     </CityContext.Provider>
   );
