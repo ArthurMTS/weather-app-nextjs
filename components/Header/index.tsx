@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 
 import { Weather } from "@/config/types";
-import { Dropdown } from "@/components";
+import { Dropdown, ThemeToggle } from "@/components";
 import { getCity } from "@/utils/api";
 
 interface HeaderProps {
@@ -36,7 +36,7 @@ export function Header({ setCity, setLoading }: HeaderProps) {
 
   return (
     <>
-      <header className="flex items-center justify-between p-2 bg-blue-500 fixed w-full mc:px-5 sm:px-10 md:px-15 lg:px-20">
+      <header className="flex items-center justify-between p-2 bg-blue-500 fixed w-full mc:px-5 sm:px-10 md:px-15 lg:px-20 dark:bg-slate-950">
         <div className="flex items-center gap-2 lg:gap-4">
           <img
             className="w-10 h-10 fill-white lg:w-12 h-12"
@@ -68,6 +68,7 @@ export function Header({ setCity, setLoading }: HeaderProps) {
             <img src="/search.svg" alt="search" />
           </button>
         </form>
+        <ThemeToggle />
       </header>
     </>
   );

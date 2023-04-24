@@ -26,7 +26,7 @@ export default function Home() {
   const [system, setSystem] = React.useState<"metric" | "imperial">("metric");
   const [loading, setLoading] = React.useState(false);
   let Display;
-
+  
   React.useMemo(() => {
     Display = city?.name ? (
       <>
@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <>
       <Header setCity={setCity} setLoading={setLoading} />
-      <main className="bg-gradient-to-r from-sky-200 to-cyan-100 flex flex-col justify-center items-center h-screen">
+      <main className="bg-gradient-to-r from-sky-200 to-cyan-100 flex flex-col justify-center items-center h-screen dark:from-sky-950 dark:to-sky-900">
         <ToastContainer />
         {loading ? <Loading /> : ""}
         {Display}
