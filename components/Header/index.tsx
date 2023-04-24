@@ -24,8 +24,8 @@ export function Header({ setCity, setLoading }: HeaderProps) {
       return;
     }
     try {
-      setCity(await getCity(input));
       setLoading(true);
+      setCity(await getCity(input));
     } catch (err) {
       handleCityNotFound();
       console.error(err);
