@@ -1,18 +1,18 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-import { Weather } from "@/config/types";
 import { Dropdown, ThemeToggle } from "@/components";
 import { getCity } from "@/utils/api";
+import { CityContext } from "@/contexts/city";
 
 interface HeaderProps {
-  setCity: (city: Weather) => void;
   setLoading: (value: boolean) => void;
 }
 
-export function Header({ setCity, setLoading }: HeaderProps) {
+export function Header({ setLoading }: HeaderProps) {
   const [input, setInput] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const { setCity } = React.useContext(CityContext);
 
   const handleCityNotFound = () => toast.error("City not found 🧭");
   const handleEmptyInput = () => toast.warning("Inform a city name");
@@ -59,7 +59,7 @@ export function Header({ setCity, setLoading }: HeaderProps) {
               onMouseOver={() => setOpen(true)}
               onMouseOut={() => setOpen(false)}
             />
-            <Dropdown setCity={setCity} open={open} setOpen={setOpen} />
+            <Dropdown open={open} setOpen={setOpen} />
           </div>
           <button
             className="bg-slate-100 rounded-full p-1 ease-in duration-200 hover:scale-110 md:p-2"

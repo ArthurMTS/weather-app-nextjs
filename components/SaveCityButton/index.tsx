@@ -1,15 +1,10 @@
 import React from "react";
 
-import { City } from "@/config/types";
 import { CityContext } from "@/contexts/city";
 
-interface SaveCityButtonProps {
-  city: City;
-}
-
-export function SaveCityButton({ city }: SaveCityButtonProps) {
+export function SaveCityButton() {
   const [saved, setSaved] = React.useState(false);
-  const { cities, saveCity } = React.useContext(CityContext);
+  const { city, cities, saveCity } = React.useContext(CityContext);
 
   React.useMemo(() => {
     const result = cities?.find(saved => saved?.id === city?.id);
@@ -25,7 +20,7 @@ export function SaveCityButton({ city }: SaveCityButtonProps) {
           : "border-amber-400 text-main hover:bg-amber-400 hover:text-white"
       }`}
       disabled={saved}
-      onClick={() => saveCity(city)}
+      onClick={() => saveCity({ id: city.id, name: city.name })}
     >
       {saved ? "Saved" : "Save"}
     </button>
